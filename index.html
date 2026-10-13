@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>etb.ai — виртуальный офис</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="office.css">
+</head>
+<body>
+  <!-- Мягкий фон: два медленно плывущих пятна света -->
+  <div class="glow" aria-hidden="true"><i></i><i></i></div>
+
+  <header class="top">
+    <div class="brand"><b>etb.ai</b><span>виртуальный офис</span></div>
+    <div class="legend" aria-label="Статусы">
+      <span><i class="dot idle"></i>свободен</span>
+      <span><i class="dot working"></i>работает</span>
+      <span><i class="dot waiting_approval"></i>ждёт одобрения</span>
+      <span><i class="dot error"></i>ошибка</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <div class="floor">
+      <section class="hero">
+        <h1 id="greeting">Добрый день</h1>
+        <dl class="stats">
+          <div><dt>в работе</dt><dd id="statWorking">0</dd></div>
+          <div><dt>ждут вас</dt><dd id="statWaiting">0</dd></div>
+          <div><dt>готово сегодня</dt><dd id="statDone">0</dd></div>
+          <div><dt>сотрудников</dt><dd id="statAgents">0</dd></div>
+        </dl>
+      </section>
+
+      <!-- Решения владельца: всегда наверху и всегда на месте, чтобы страница не прыгала -->
+      <section class="panel approvals" id="approvalsPanel">
+        <h2>Ждут вашего решения</h2>
+        <ul id="approvals"></ul>
+        <p class="approvals__empty" id="approvalsEmpty">Сейчас ничего не ждёт вашего решения</p>
+      </section>
+
+      <section>
+        <h2>Проекты</h2>
+        <div class="chips" id="projects"></div>
+      </section>
+      <section>
+        <h2>Директора проектов</h2>
+        <div class="desks" id="directors"></div>
+      </section>
+      <!-- Отделы: сотрудники со смежной специализацией. Общую задачу отдел берёт целиком и делит внутри -->
+      <div class="departments" id="departments"></div>
+    </div>
+
+    <aside class="side">
+      <section class="panel feed">
+        <h2><i class="live"></i>Лента</h2>
+        <ul id="feed"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Карточка агента или проекта -->
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet__panel" role="dialog" aria-modal="true">
+      <button class="sheet__close" id="sheetClose" aria-label="Закрыть">✕</button>
+      <div id="sheetBody"></div>
+    </div>
+  </div>
+
+  <!-- Данные: на этапе 4 этот файл заменит подписка Supabase Realtime, остальная страница не меняется -->
+  <script src="gate.js"></script>
+  <script src="demo.js"></script>
+  <script src="office.js"></script>
+</body>
+</html>
